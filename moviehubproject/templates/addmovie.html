@@ -1,0 +1,22 @@
+<!--{% load static %}-->
+{% block body %}
+
+<!--{% if user.is_authenticated %}-->
+<form method="POST">
+    {% csrf_token %}
+    {{forms.as_p}}
+    <input type="submit" value="addmovie" >
+    </form>
+<!--{% endif %}-->
+{% endblock %}
+
+<!--    <input type="text" name="name" placeholder="Enter the movie name"><br>-->
+<!--    <input type="text" name="description" placeholder="Enter the description"><br>-->
+<!--    <input type="text" name="category" placeholder="Category"><br>-->
+<!--    <input type="date" name="date" placeholder="Enter the movie release date"><br>-->
+<!--    <input type="text" name="actors" placeholder="Enter the actors"><br>-->
+<!--    <input type="url" name="youtube" placeholder="Enter youtube link"><br>-->
+<!--    <input type="file" name="image"><br>-->
+<!--    <input type="submit" >-->
+<!--</form>-->
+<!--</div>-->

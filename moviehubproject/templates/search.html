@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block metadescription %}
+
+        Movie Trailers...
+
+{% endblock %}
+
+{% block title %}
+    Search
+{% endblock %}
+
+{% block content %}
+<div>
+    <p class="text-center my_search_text">You have searched for: <b>"{{query}}"</b></p>
+</div>
+<div class="container">
+    <div class="row mx_auto">
+        {% for movie in movies %}
+        <div class="my_bottom_margin col-9 col-sm-12 col-md-4 col-md-4">
+            <div class="card text-center" style="min-width:18rem;">
+                <a href="{{movie.get_url}}"><img class="card-img-top my_image" src="{{movie.image.url}}" style="width:200px;height:200px" alt="{{movie.name}}"> </a>
+                <div>
+                    <h4>{{movie.name}}</h4>
+                    <p>{{movie.date}}</p>
+                    <p>{{movie.actors}}</p>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <div class="row mx-auto">
+            <p class="text-center my_search_text"> 0 results found</p>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block metadescription %}
+<!--    {% if category %}-->
+<!--        {{ category.description|truncatewords:155 }}-->
+<!--    {% else %}-->
+<!--        Welcome to our store....-->
+<!--    {% endif %}-->
+{% endblock %}
+
+<!--{% block title %}-->
+<!--&lt;!&ndash;    {% if category %}&ndash;&gt;-->
+<!--&lt;!&ndash;        {{ category.name }} -ABC store&ndash;&gt;-->
+<!--&lt;!&ndash;    {% else %}&ndash;&gt;-->
+<!--&lt;!&ndash;        Our new collections...&ndash;&gt;-->
+<!--&lt;!&ndash;    {% endif %}&ndash;&gt;-->
+<!--{% endblock %}-->
+
+{% block content %}
+<!--{% if category %}-->
+    <div>
+        <div class="row my_row_class">
+            <div class="mx_auto">
+            <p><a href="{% url 'moviesapp:allMovieCat' %}">Our Movies</a> </p>
+        </div>
+            </div>
+    </div>
+<!--{% endif %}-->
+<div class="mx-auto">
+<!--    {% if category %}-->
+<!--        <img class="my_image" src="{{category.image.url}}" alt="{{category.name}}">-->
+</div>
+<br>
+<div>
+    <h1 class="text-center my_title">{{category.name}}</h1>
+    <p class="text-justify">{{category.description}}</p>
+</div>
+<!--    {% else %}-->
+    <div>
+<!--        <img class="my_image my_image_padding" src="{% static 'img/banner.png' %}" alt="Our Products" width="1115px;">-->
+    </div>
+<br>
+<div>
+    <h1 class="text-center my_title"> Trailer Hub</h1>
+<!--    <p class="text-justify">Organic farmers and food producers grow and produce food without using synthetic chemicals such as pesticides and artificial fertilisers. They do not use genetically modified (GM) components or expose food to irradiation. Animal welfare and environmental sustainability are important issues for organic farmers.</p>-->
+</div>
+
+<!--    {% endif %}-->
+<div class="container">
+    <div class="row mx_auto">
+        {% for movie in movies.object_list %}
+        <div class="my_bottom_margin col-6 col-sm-4 col-md-3 col-md-4">
+            <div class="card text-center" style="min-width:18rem;">
+                {% if movie.image %}
+                    <a href="{{movie.youtube}}"><img class="card-img-top my_image" src="{{movie.image.url}}" style="width:200px;height:200px;" alt="{{movie.name}}"> </a>
+                {% endif %}
+                <div>
+                    <h4>{{movie.name}}</h4>
+                    <p>{{movie.date}}</p>
+
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    <div class="mx-auto">
+        {% if movies.paginator.num_pages > 1 %}
+
+        <hr>
+        <div class="text-center">
+            {% for pg in movies.paginator.page_range %}
+                <a href="?page={{pg}}" class="btn btn-light btn-sm {% if movies.number == pg %} active {% endif %}">{{pg}}</a>
+            {% endfor %}
+
+        </div>
+        {% endif %}
+    </div>
+    <br>
+</div>
+{% endblock %}
